@@ -34,7 +34,7 @@ services:
     ports:
       - "8080:80"
     volumes:
-      - ../codes/:/var/www/html/
+      - ../docusign/:/var/www/html/
     networks:
       - frontend
       - backend  
