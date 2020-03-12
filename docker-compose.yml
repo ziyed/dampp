@@ -1,4 +1,4 @@
-# Replace source folder "codes" with target source folder
+# Replace source folder "docusign" with target source folder
 
 version: "3.2"
 services:
@@ -9,7 +9,7 @@ services:
     build: './docker-resource/php/'
     working_dir: /var/www/html    
     volumes:
-      - ../codes/:/var/www/html
+      - ../docusign/:/var/www/html
     networks:
       - backend
   
