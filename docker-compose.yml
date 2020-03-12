@@ -1,0 +1,45 @@
+# Replace source folder "codes" with target source folder
+
+version: "3.2"
+services:
+
+  # PHP Service  
+  php:
+    container_name: php7
+    build: './docker-resource/php/'
+    working_dir: /var/www/html    
+    volumes:
+      - ../codes/:/var/www/html
+    networks:
+      - backend
+  
+  # Database Service    
+  mysql:
+    container_name: mysql_db
+    image: mysql:5.6.40
+    networks:
+      - backend
+    environment:     
+      - "MYSQL_ROOT_PASSWORD=rootpassword" 
+    ports: 
+      - "3306:3306"     
+
+  # Web Server Service    
+  apache:
+    container_name: apache
+    build: './docker-resource/apache/'
+    depends_on:
+      - php
+      - mysql  
+    ports:
+      - "8080:80"
+    volumes:
+      - ../codes/:/var/www/html/
+    networks:
+      - frontend
+      - backend  
+
+  
+networks:
+  frontend:
+  backend:
