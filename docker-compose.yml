@@ -3,9 +3,24 @@
 version: "3.2"
 services:
 
+  # Database Service    
+  mysql:
+    container_name: docusign_db
+    image: mysql:5.7
+    networks:
+      - backend
+    volumes:
+      - ./database/mysql/config/my.cnf:/etc/mysql/my.cnf      
+      - ./database/mysql/logs:/var/log/mysql
+      - ./database/mysql/data:/var/lib/mysql  
+    environment:     
+      - "MYSQL_ROOT_PASSWORD=docusigndb" 
+    ports: 
+      - "3306:3306"  
+
   # PHP Service  
   php:
-    container_name: php7
+    container_name: docusign_php7
     build: './docker-resource/php/'
     working_dir: /var/www/html    
     volumes:
@@ -13,20 +28,9 @@ services:
     networks:
       - backend
   
-  # Database Service    
-  mysql:
-    container_name: mysql_db
-    image: mysql:5.6.40
-    networks:
-      - backend
-    environment:     
-      - "MYSQL_ROOT_PASSWORD=rootpassword" 
-    ports: 
-      - "3306:3306"     
-
   # Web Server Service    
   apache:
-    container_name: apache
+    container_name: docusign_apache
     build: './docker-resource/apache/'
     depends_on:
       - php
