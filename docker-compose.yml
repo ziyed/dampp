@@ -44,7 +44,7 @@ services:
       - "80:80"
     volumes:
       - ../docusign/:/var/www/html
-      - ./docker-resource/apache-php/logs/error_log:/var/log/apache2/error.log
+      - ./docker-resource/apache-php/logs/error.log:/var/log/apache2/error.log
       - ./docker-resource/apache-php/php/updates.ini:/usr/local/etc/php/conf.d/updates.ini
     depends_on:
       - db

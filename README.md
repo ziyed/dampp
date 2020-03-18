@@ -9,6 +9,7 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - Pull the repo outside of project directory. https://github.com/ziyed/docker-apache-php-mysql-service
 - Update .env variable when download completed
 - Update the `docker-compose.yml > line 42` with your specific project folder of laravel project
+- Create a file name like `error.log` at `/docker-resource/apache-php/logs/` directory
 - open the terminal and run `docker-compose up -d` command
 
 ## Laravel Project Setup
