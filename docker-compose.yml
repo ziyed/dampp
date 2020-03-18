@@ -40,6 +40,8 @@ services:
     environment:
       - APACHE_RUN_USER=#${UID}
       - APACHE_RUN_GROUP=#${UID}
+      - "DB_PORT=3306"
+      - "DB_HOST=db"
     ports:
       - "80:80"
     volumes:
