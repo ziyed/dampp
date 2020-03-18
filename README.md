@@ -1,8 +1,6 @@
 # docker-apache-php-mysql-service
 A complete docker ecosystem to run php application with mysql database connectivity on apache server
 
-
-
 # Steps to run Laravel Project With Docker
 
 ## Docker Service Setup
@@ -17,3 +15,8 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - Open the terminal and run the command `docker exec -it -u ziyed app bash`
 - now run `composer install` to install the dependencies
 - 
+
+## phpMyAdmin 
+
+- browser url `http://localhost:81`
+- username/password :  root/root
