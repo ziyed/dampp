@@ -48,3 +48,5 @@ services:
       - ./docker-resource/apache-php/php/updates.ini:/usr/local/etc/php/conf.d/updates.ini
     depends_on:
       - db
+    links:
+      - db:mysqldb

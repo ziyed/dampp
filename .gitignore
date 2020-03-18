@@ -1,3 +1,4 @@
 /docker-resource/database/mysql/logs/*
 /docker-resource/database/mysql/data/*
 /docker-resource/apache-php/logs/*
+/.env
