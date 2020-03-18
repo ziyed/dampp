@@ -1,49 +1,41 @@
 # Replace source folder "docusign" with target source folder
 
-version: "3.2"
+version: '3'
 services:
 
-  # Database Service    
-  mysql:
-    container_name: docusign_db
-    image: mysql:5.7
-    networks:
-      - backend
-    volumes:
-      - ./database/mysql/config/my.cnf:/etc/mysql/my.cnf      
-      - ./database/mysql/logs:/var/log/mysql
-      - ./database/mysql/data:/var/lib/mysql  
-    environment:     
-      - "MYSQL_ROOT_PASSWORD=docusigndb" 
+  # DATABASE 
+  db:    
+    image: mysql:5.7   
+    environment:
+      MYSQL_DATABASE: ${DB_DATABASE}
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: ${DB_USERNAME}
+      MYSQL_PASSWORD: ${DB_PASSWORD}
     ports: 
-      - "3306:3306"  
+      - "3306:3306"
 
-  # PHP Service  
-  php:
-    container_name: docusign_php7
-    build: './docker-resource/php/'
-    working_dir: /var/www/html    
-    volumes:
-      - ../docusign/:/var/www/html
-    networks:
-      - backend
-  
-  # Web Server Service    
-  apache:
-    container_name: docusign_apache
-    build: './docker-resource/apache/'
-    depends_on:
-      - php
-      - mysql  
+  # PHPMYADMIN   
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
     ports:
-      - "8080:80"
-    volumes:
-      - ../docusign/:/var/www/html/
-    networks:
-      - frontend
-      - backend  
+      - "81:80"
+    depends_on:
+      - db    
 
-  
-networks:
-  frontend:
-  backend:
+  # APPLICATION  
+  app:
+    build:
+      context: .
+      dockerfile: ./docker-resource/apache-php/Dockerfile
+      args:
+        uid: ${UID}
+    working_dir: /var/www/html
+    environment:
+      - APACHE_RUN_USER=#${UID}
+      - APACHE_RUN_GROUP=#${UID}
+    ports:
+      - "80:80"
+    volumes:
+      - ../laravel/:/var/www/html
+    depends_on:
+      - db
