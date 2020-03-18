@@ -12,6 +12,15 @@ RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-com
 
 RUN docker-php-ext-install pdo pdo_mysql
 
+# Install Node.js
+RUN curl -sL https://deb.nodesource.com/setup_13.x | bash
+RUN apt-get install --yes nodejs
+RUN node -v
+RUN npm -v
+RUN npm i -g nodemon
+RUN nodemon -v
+
+# Install Composer
 RUN curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
 
 ENV APACHE_DOCUMENT_ROOT=/var/www/html/public
