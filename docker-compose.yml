@@ -4,8 +4,13 @@ version: '3'
 services:
 
   # DATABASE 
-  db:    
-    image: mysql:5.7   
+  db:
+    container_name: mysqldb 
+    image: mysql:5.7
+    volumes:
+      - ./docker-resource/database/mysql/config/my.cnf:/etc/mysql/my.cnf
+      - ./docker-resource/database/mysql/logs:/var/log/mysql
+      - ./docker-resource/database/mysql/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
       MYSQL_ROOT_PASSWORD: root
@@ -16,6 +21,7 @@ services:
 
   # PHPMYADMIN   
   phpmyadmin:
+    container_name: phpmyadmin_service
     image: phpmyadmin/phpmyadmin
     ports:
       - "81:80"
@@ -24,6 +30,7 @@ services:
 
   # APPLICATION  
   app:
+    container_name: app
     build:
       context: .
       dockerfile: ./docker-resource/apache-php/Dockerfile
@@ -36,6 +43,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../laravel/:/var/www/html
+      - ../docusign/:/var/www/html
+      - ./docker-resource/apache-php/logs/error_log:/var/log/apache2/error.log
+      - ./docker-resource/apache-php/php/updates.ini:/usr/local/etc/php/conf.d/updates.ini
     depends_on:
       - db
