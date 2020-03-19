@@ -8,7 +8,7 @@ A complete docker ecosystem to run php7 application with mysql database connecti
 - phpMyAdmin
 - Docker
 
-# Steps to run Laravel Project With Docker
+# Steps to run Project With Docker
 
 ## Docker Service Setup
 - Pull the repo outside of project directory from here https://github.com/ziyed/docker-apache-php-mysql-service
@@ -17,7 +17,7 @@ A complete docker ecosystem to run php7 application with mysql database connecti
 - Create a file name `error.log` at `/docker-resource/apache-php/logs/` directory
 - open the terminal and run `docker-compose up -d` command to run all services
 
-## Laravel Project Setup
+## Project Setup (Laravel)
 - Go to project root folder and copy `.env.example` folder to `.env`
 - Open the terminal and run the command `docker exec -it -u ziyed app bash`. You can replace `ziyed` with you define value at env file.
 - now run `composer install` to install the dependencies.
