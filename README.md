@@ -9,7 +9,7 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - phpMyAdmin
 
 # Docker Service Setup
-- Pull the repo outside of project directory from here https://github.com/ziyed/docker-apache-php-mysql-service
+- Pull the repo outside of project directory from here https://github.com/ziyed/dampp
 - copy `.env.example` to `.env`
 - Update `.env` variable with desired values
 - Create a file name `error.log` inside `/docker-resource/apache-php/logs/` directory
