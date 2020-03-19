@@ -24,6 +24,7 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - run `php artisan migrate` to migrate all database table.
 - run `npm install` to install node modules.
 - run `npm run dev` or `npm run watch` for building assets.
+- browser url `http://localhost`
 
 # phpMyAdmin 
 - browser url `http://localhost:81`
