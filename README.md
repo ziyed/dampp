@@ -27,3 +27,13 @@ A complete docker ecosystem to run php application with mysql database connectiv
 # phpMyAdmin 
 - browser url `http://localhost:81`
 - username/password :  root/root
+
+
+# Features
+- phpMyAdmin to manage MySQL database easily
+- MySQL configuration file
+- MySQL data backup thus it never lose any data if container down
+- MySQL logs output
+- Apache server error.log output
+- Ability to update php.ini file
+- Super flexible to change variable on env file
