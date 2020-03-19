@@ -1,11 +1,9 @@
-# Replace source folder "docusign" with target source folder
-
 version: '3'
 services:
 
   # DATABASE 
   db:
-    container_name: mysqldb 
+    container_name: mydb
     image: mysql:5.7
     volumes:
       - ./docker-resource/database/mysql/config/my.cnf:/etc/mysql/my.cnf
@@ -13,20 +11,20 @@ services:
       - ./docker-resource/database/mysql/data:/var/lib/mysql
     environment:
       MYSQL_DATABASE: ${DB_DATABASE}
-      MYSQL_ROOT_PASSWORD: root
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       MYSQL_USER: ${DB_USERNAME}
       MYSQL_PASSWORD: ${DB_PASSWORD}
     ports: 
-      - "3306:3306"
+      - "33061:3306"
 
   # PHPMYADMIN   
   phpmyadmin:
-    container_name: phpmyadmin_service
+    container_name: phpmyadmin
     image: phpmyadmin/phpmyadmin
     ports:
       - "81:80"
     depends_on:
-      - db    
+      - db
 
   # APPLICATION  
   app:
@@ -36,6 +34,7 @@ services:
       dockerfile: ./docker-resource/apache-php/Dockerfile
       args:
         uid: ${UID}
+        uuser: ${UUSER}
     working_dir: /var/www/html
     environment:
       - APACHE_RUN_USER=#${UID}
@@ -45,10 +44,8 @@ services:
     ports:
       - "80:80"
     volumes:
-      - ../docusign/:/var/www/html
+      - ../${PROJECT_FOLDER}/:/var/www/html
       - ./docker-resource/apache-php/logs/error.log:/var/log/apache2/error.log
       - ./docker-resource/apache-php/php/updates.ini:/usr/local/etc/php/conf.d/updates.ini
     depends_on:
       - db
-    links:
-      - db:mysqldb

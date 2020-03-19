@@ -1,10 +1,11 @@
 FROM php:7.2.7-apache
 
 ARG uid
+ARG uuser
 
-RUN useradd -G www-data,root -u $uid -d /home/ziyed ziyed
-RUN mkdir -p /home/ziyed/.composer && \
-    chown -R ziyed:ziyed /home/ziyed
+RUN useradd -G www-data,root -u $uid -d /home/$uuser $uuser
+RUN mkdir -p /home/$uuser/.composer && \
+    chown -R $uuser:$uuser /home/$uuser
 
 RUN apt-get update --fix-missing -q
 
