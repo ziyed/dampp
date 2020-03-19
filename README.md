@@ -1,5 +1,5 @@
-# Laravel7-Docker-Ecosystem
-A complete docker ecosystem to run php application with mysql database connectivity on apache server
+# Docker, Apache, MySQL, PHP7 and phpMyAdmin ( DAMPP )
+A complete docker ecosystem to run php7 application with mysql database connectivity at apache server
 
 # Ecosystem
 - Apache
