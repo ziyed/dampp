@@ -15,11 +15,11 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - Create a file name `error.log` inside `/docker-resource/apache-php/logs/` directory
 - Confirmed you have project folder available before running below command
 - open the terminal and run `docker-compose up -d` command to run all services
-- If any container connectivity not work perfectly then run the command `docker-compose restart` to restart again
+- Run the command `docker-compose restart` (If any container connectivity has problem)
 
 # Project Setup (Laravel 7)
 - Go to project root folder and copy `.env.example` folder to `.env`
-- Open the terminal and run the command `docker exec -it -u ziyed app bash`. You can replace `ziyed` with you define value at env file.
+- Open the terminal and run the command `docker exec -it -u ziyed app bash`. You can replace `ziyed` with your defined value at env file.
 - now run `composer install` to install the dependencies.
 - run `php artisan optimize:clear` when ever your have change in env file and wants to clear cache at any time.
 - run `php artisan migrate` to migrate all database table.
