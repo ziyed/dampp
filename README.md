@@ -13,6 +13,7 @@ A complete docker ecosystem to run php application with mysql database connectiv
 - copy `.env.example` to `.env`
 - Update `.env` variable with desired values
 - Create a file name `error.log` inside `/docker-resource/apache-php/logs/` directory
+- Confirmed you have project folder available before running below command
 - open the terminal and run `docker-compose up -d` command to run all services
 
 # Project Setup (Laravel 7)
