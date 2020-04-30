@@ -9,7 +9,7 @@ RUN mkdir -p /home/$uuser/.composer && \
 
 RUN apt-get update --fix-missing -q
 
-RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-common wget vim zip unzip
+RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-common wget vim zip unzip ghostscript
 
 RUN docker-php-ext-install pdo pdo_mysql
 
