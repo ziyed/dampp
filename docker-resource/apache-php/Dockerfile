@@ -11,6 +11,11 @@ RUN apt-get update --fix-missing -q
 
 RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-common wget vim zip unzip ghostscript
 
+RUN apt-get install -y gcc libmagickwand-dev --no-install-recommends \
+    && pecl install imagick \
+    && docker-php-ext-enable imagick \
+    && rm -rf /var/lib/apt/lists/*
+
 RUN docker-php-ext-install pdo pdo_mysql
 
 # Install Node.js
