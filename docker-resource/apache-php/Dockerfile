@@ -9,7 +9,11 @@ RUN mkdir -p /home/$uuser/.composer && \
 
 RUN apt-get update --fix-missing -q
 
-RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-common wget vim zip unzip ghostscript
+RUN apt-get install -y curl mcrypt gnupg build-essential software-properties-common wget vim zip unzip
+
+RUN apt-get --no-install-recommends install -y libreoffice
+
+RUN apt-get install -y ghostscript
 
 RUN apt-get install -y gcc libmagickwand-dev --no-install-recommends \
     && pecl install imagick \
