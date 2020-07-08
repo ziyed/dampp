@@ -27,8 +27,8 @@ RUN curl -sL https://deb.nodesource.com/setup_13.x | bash
 RUN apt-get install --yes nodejs
 RUN node -v
 RUN npm -v
-RUN npm i -g nodemon
-RUN nodemon -v
+#RUN npm i -g nodemon
+#RUN nodemon -v
 
 # Install Composer
 RUN curl -sSL https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
